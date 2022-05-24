@@ -3,4 +3,8 @@
     <string name="secret_key">mykey</string>
     <string name="permissionMessage">This app is a calendar. Grant the needed permissions!</string>
     <string name="grantPermission">GRANT PERMISSION</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_black_fragment">Hello black fragment</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
