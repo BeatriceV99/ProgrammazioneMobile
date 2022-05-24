@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "192269877767",
+    "project_id": "programmazionemobile2022-556dc",
+    "storage_bucket": "programmazionemobile2022-556dc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:192269877767:android:d2374e1b94036933c6a0a2",
+        "android_client_info": {
+          "package_name": "com.experiments.progrmob"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "192269877767-r3adgs00ajs05jnr045vk90hdldj6oro.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB6U6IXHpzmU9-G6WMn23Bq5_EPmqJTWW0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "192269877767-r3adgs00ajs05jnr045vk90hdldj6oro.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
