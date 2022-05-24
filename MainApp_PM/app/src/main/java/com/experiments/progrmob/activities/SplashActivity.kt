@@ -10,6 +10,7 @@ import android.widget.Button
 import androidx.core.content.ContextCompat
 import com.experiments.progrmob.listeners.GrantPermissionListener
 import com.experiments.progrmob.R
+import com.experiments.progrmob.models.FirebaseAuthWrapper
 
 class SplashActivity : AppCompatActivity() {
     private val TAG = SplashActivity::class.simpleName
@@ -33,13 +34,22 @@ class SplashActivity : AppCompatActivity() {
 
         Log.d(TAG, "The SplashActivity is started!")
 
-        // TODO: Check if user logged or not
+        // Check if user logged or not
+        val firebaseAuthWrapper : FirebaseAuthWrapper = FirebaseAuthWrapper(this)
+        if (!firebaseAuthWrapper.isAuthenticated()) {
+            // Redirect to login/register activity
+            val intent = Intent(this, LoginActivity::class.java)
+            this.startActivity(intent)
+            finish()
+            return
+        }
 
         //Start MainActivity
         if(this.hasPermission()) {
             val intent = Intent(this, MainActivity::class.java)
             this.startActivity(intent)
             finish()
+            return
         }
 
         // Show a message and react to a click button

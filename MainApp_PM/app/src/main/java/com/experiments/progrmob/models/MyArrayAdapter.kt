@@ -29,6 +29,9 @@ class MyArrayAdapter (context: Context, val resource: Int, val events: List<MyEv
         val eventEndTime: TextView = view.findViewById(R.id.eventEndTime)
         eventEndTime.setText(event.formattedEndDate)
 
+        val eventLocation: TextView = view.findViewById(R.id.location)
+        eventLocation.setText(event.location)
+
         return view
     }
 }

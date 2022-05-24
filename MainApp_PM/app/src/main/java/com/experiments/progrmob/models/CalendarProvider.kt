@@ -1,10 +1,12 @@
 package com.experiments.progrmob.models
 
 import android.content.ContentResolver
+import android.content.ContentValues
 import android.database.Cursor
 import android.net.Uri
 import android.provider.CalendarContract
 import android.util.Log
+import androidx.annotation.NonNull
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -57,7 +59,7 @@ fun getEventsOfDay(contentResolver: ContentResolver, day: Int, month: Int, year:
         val eventId: Long = cur.getLong(EVENT_COLUMN[CalendarContract.Events._ID]!!)
         val calendarId: Long = cur.getLong(EVENT_COLUMN[CalendarContract.Events.CALENDAR_ID]!!)
         val title: String = cur.getString(EVENT_COLUMN[CalendarContract.Events.TITLE]!!)
-        val descr: String = cur.getString(EVENT_COLUMN[CalendarContract.Events.DESCRIPTION]!!)
+        val descr: String = cur.getString(EVENT_COLUMN[CalendarContract.Events.DESCRIPTION]!!) ?: ""
         val dtStart: Long = cur.getLong(EVENT_COLUMN[CalendarContract.Events.DTSTART]!!)
         val dtEnd: Long = cur.getLong(EVENT_COLUMN[CalendarContract.Events.DTEND]!!)
         val dur: String = cur.getString(EVENT_COLUMN[CalendarContract.Events.DURATION]!!)
@@ -108,4 +110,19 @@ fun getAllEvents (contentResolver : ContentResolver) : List<MyEvent> {
 
     Log.d(TAG, "Retrieved ${result.size} event from the content provider of the google calendar")
     return result
+}
+
+// See: https://developer.android.com/guide/topics/providers/calendar-provider#add-event
+fun addNewEvent(@NonNull contentResolver : ContentResolver, myEvent : MyEvent) : Long {
+    val values = ContentValues().apply {
+        put(CalendarContract.Events.DTSTART, myEvent.startDate.time)
+        put(CalendarContract.Events.DTEND, myEvent.endDate.time)
+        put(CalendarContract.Events.TITLE, myEvent.title)
+        put(CalendarContract.Events.CALENDAR_ID, myEvent.calId)
+        put(CalendarContract.Events.EVENT_TIMEZONE, Locale.ITALY.country)
+    }
+    val uri: Uri? = contentResolver.insert(CalendarContract.Events.CONTENT_URI, values)
+
+    // get the event ID that is the last element in the Uri
+    return uri?.lastPathSegment?.toLong() ?: -1
 }

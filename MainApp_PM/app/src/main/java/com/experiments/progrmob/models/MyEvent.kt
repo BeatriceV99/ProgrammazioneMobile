@@ -12,8 +12,8 @@ class MyEvent (val id : Long,
                val endDate: Date,
                val duration: String,
                val allDay: Boolean,
-               val isWeather: Boolean = false,
-               val location: String = "") {
+               var isWeather: Boolean = false,
+               var location: String = "") {
     private val formatter = SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.US)
 
     val formattedStartDate :String? get() : String? {

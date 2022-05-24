@@ -1,11 +1,15 @@
 package com.experiments.progrmob.activities
 
+import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.CalendarView
 import androidx.fragment.app.commit
 import com.experiments.progrmob.R
 import com.experiments.progrmob.fragments.DayListFragment
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 class MainActivity : AppCompatActivity() {
     private val TAG : String? = MainActivity::class.simpleName
@@ -37,5 +41,16 @@ class MainActivity : AppCompatActivity() {
             }
 
         })
+
+        val context : Context = this
+        val addButton : FloatingActionButton = findViewById(R.id.addButton)
+        addButton.setOnClickListener( object : View.OnClickListener {
+            override fun onClick(v: View?) {
+                val addEventIntent = Intent(context, AddEventActivity::class.java)
+                startActivity(addEventIntent)
+                finish()
+            }
+        })
+
     }
 }
